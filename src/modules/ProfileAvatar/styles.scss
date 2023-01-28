@@ -1,0 +1,12 @@
+$big-size-avatar: 50px;
+
+.Avatar {
+    &-input {
+        display: none;
+    }
+    &-image {
+        height: $big-size-avatar;
+        width: $big-size-avatar;
+        border-radius: 100%;
+    }
+}

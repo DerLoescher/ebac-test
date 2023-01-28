@@ -1,4 +1,8 @@
-import { createApp } from "vue";
-import App from "./App.vue";
+import { app } from "./app";
+import { Field, Form, ErrorMessage } from "vee-validate";
 
-createApp(App).mount("#app");
+app
+  .component("VeeField", Field)
+  .component("VeeForm", Form)
+  .component("VeeErrorMessage", ErrorMessage)
+  .mount("#app");
