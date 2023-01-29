@@ -1,8 +1,15 @@
 <template>
-  <div>
-    <ProfileAvatar @avatarChange="avatarChange" />
-    <ProfilePersonalData />
-    <ProfilePasswordEdit />
+  <div class="ProfilePage">
+    <div class="ProfilePage-wrapper">
+      <ProfileAvatar
+        class="ProfilePage-avatar"
+        @changeAvatar="changeAvatar"
+        @removeAvatar="removeAvatar"
+        :defaultAvatar="defaultAvatar"
+      />
+      <ProfilePersonalData />
+      <ProfilePasswordEdit />
+    </div>
   </div>
 </template>
 
@@ -20,14 +27,32 @@ export default {
       userId: 123,
       userForm: {
         avatar: null,
-        data: null,
+        data: {
+          name: "null",
+          surname: "null",
+        },
         password: null,
       },
     };
   },
+  computed: {
+    defaultAvatar() {
+      if (!this.userForm.data.name) {
+        return false;
+      }
+      let userInitials = `${this.userForm.data.name[0].toUpperCase()}${this.userForm.data.surname[0].toUpperCase()}`;
+      const randomColor = `#${Math.floor(Math.random() * 16777215).toString(
+        16
+      )}`;
+      return { text: userInitials, color: randomColor };
+    },
+  },
   methods: {
-    avatarChange(file) {
+    changeAvatar(file) {
       this.userForm.avatar = file;
+    },
+    removeAvatar() {
+      this.userForm.avatar = null;
     },
   },
 };

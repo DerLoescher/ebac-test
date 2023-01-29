@@ -1,11 +1,11 @@
 <template>
   <div>
-    <VeeForm @submit="onSubmit">
+    <!-- <VeeForm @submit="onSubmit">
       <VeeField name="password" v-slot="{ field }">
         <input v-bind="field" type="password" />
         <p>Hint: Enter a secure password you can remember</p>
       </VeeField>
-    </VeeForm>
+    </VeeForm> -->
   </div>
 </template>
 

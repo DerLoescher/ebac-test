@@ -1,0 +1,10 @@
+.ProfilePersonalData {
+    &-form {
+        display: flex;
+        flex-direction: column;
+        input {
+            max-width: 100px;
+        }
+    }
+    
+}

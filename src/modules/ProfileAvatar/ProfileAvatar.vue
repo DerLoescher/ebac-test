@@ -1,14 +1,35 @@
 <template>
   <div>
     <input
-      class="Avatar-input"
+      class="ProfileAvatar-input"
       type="file"
       accept="image/*"
       ref="file"
       @change="changeAvatar"
     />
-    <img class="Avatar-image" :src="avatarSrc" alt="avatar" />
-    <button @click="browse">Browse</button>
+    <div
+      class="ProfileAvatar-image"
+      :style="{
+        'background-color': avatarSrc ? '#FEFEFE' : defaultAvatar.color,
+      }"
+    >
+      <img
+        class="ProfileAvatar-image-pic"
+        :src="avatarSrc"
+        alt="avatar"
+        v-if="avatarSrc"
+      />
+      <span v-if="!avatarSrc && defaultAvatar">{{ defaultAvatar.text }}</span>
+      <span v-else></span>
+      <div class="ProfileAvatar-image-browse">
+        <button @click="browse" title="browse">
+          <img src="@/ui/icons/camera-icon.svg" />
+        </button>
+        <button @click="remove" v-if="avatarSrc" title="delete">
+          <img src="@/ui/icons/trash-icon.svg" />
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,15 +49,23 @@ export default {
       type: Number,
       required: false,
     },
+    defaultAvatar: {
+      type: Object,
+      required: false,
+    },
   },
   methods: {
     browse() {
       this.$refs.file.click();
     },
+    remove() {
+      this.avatarSrc = null;
+      this.$emit("removeAvatar");
+    },
     changeAvatar(e) {
       this.loadedFile = e.target.files[0];
 
-      this.$emit("avatarChange", this.loadedFile);
+      this.$emit("changeAvatar", this.loadedFile);
 
       let reader = new FileReader();
       reader.readAsDataURL(this.loadedFile);
@@ -45,5 +74,6 @@ export default {
       };
     },
   },
+  emits: ["changeAvatar", "removeAvatar"],
 };
 </script>

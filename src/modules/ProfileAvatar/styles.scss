@@ -1,12 +1,64 @@
-$big-size-avatar: 50px;
+@mixin big-size-avatar {
+    $big-size: 100px;
+    min-height: $big-size;
+    max-height: $big-size;
+    min-width: $big-size;
+    max-width: $big-size;
+    border: 1.5px solid black;
+    font-size: 35px;
+};
 
-.Avatar {
+.ProfileAvatar {
+    $font: Helvetica;
     &-input {
         display: none;
     }
     &-image {
-        height: $big-size-avatar;
-        width: $big-size-avatar;
+        @include big-size-avatar;
+        position: relative;
         border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        font-family: $font;
+        &-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        &-browse {
+            position: absolute;
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            &:hover {
+                opacity: 100%;
+                background-color:rgba(0, 0, 0, 0.5);
+            }
+            button {
+                opacity: 200%;
+                border-radius: 100%;
+                border: none;
+                width: 40%;
+                height: 40%;
+                background-color: rgba(254, 254, 254, 0.5);
+                cursor: pointer;
+                transition: all .2s;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                &:hover {
+                    background-color: rgba(254, 254, 254, 0.7);
+                }
+            }
+        }
     }
 }
