@@ -1,2 +1,9 @@
+@import  "./vars.scss";
 @import "./normalize.scss";
-@import "./vars.scss";
+
+
+body {
+    background-color: $main_color;
+    color: $font_color;
+}
+

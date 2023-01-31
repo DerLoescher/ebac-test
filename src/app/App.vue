@@ -8,6 +8,8 @@
 
 <script>
 import ProfilePage from "../pages/ProfilePage/ProfilePage.vue";
+import "./index.scss";
+
 export default {
   name: "App",
   components: { ProfilePage },
