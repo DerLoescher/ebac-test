@@ -5,6 +5,13 @@
       @submit="onSubmit"
       v-slot="{ values }"
     >
+      <VeePhone
+        :name="'tel'"
+        :type="'tel'"
+        :title="'Phone Number'"
+        :rules="validateEmail"
+        :required="true"
+      />
       <VeeInput
         :name="'name'"
         :type="'text'"
@@ -38,13 +45,7 @@
       />
 
       <VeeField name="city"></VeeField>
-      <VeePhone
-        :name="'tel'"
-        :type="'tel'"
-        :title="'Phone Number'"
-        :rules="validateEmail"
-        :required="true"
-      />
+
       <VeeField name="field" as="select" v-model="select">
         <option value="cofee">Coffee</option>
         <option value="tee">Tea</option>
@@ -56,12 +57,13 @@
         <option>Coke</option>
       </VeeField>
       <button type="submit" @click="onSubmit(values)">123</button>
+      {{ values }}
     </VeeForm>
   </div>
 </template>
 
 <script>
-import VeePhone from "../../components/VeePhone/VeeInput/VeePhone.vue";
+import VeePhone from "../../components/VeePhone/VeePhone.vue";
 import VeeInput from "../../components/VeeInput/VeeInput.vue";
 import "./styles.scss";
 
