@@ -20,7 +20,7 @@
     <VeeErrorMessage class="VeePhone-error" :name="name" v-if="required" />
   </div>
   <span>тлефон</span>
-  <input type="text" v-phone="phoneNumber" v-model="phoneNumber" />
+  <input type="text" v-model="phoneNumber" v-phone />
 </template>
 
 <script>
@@ -57,6 +57,21 @@ export default {
       codesArray: countryCodes,
       phoneNumber: null,
     };
+  },
+  methods: {
+    formatPhoneNumber() {
+      const x = this.phoneNumber
+        .replace(/\D/g, "")
+        .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/);
+
+      if (!x[2] && x[1] !== "") {
+        this.phoneNumber = x[1] === "8" ? x[1] : "8" + x[1];
+      } else {
+        this.phoneNumber = !x[3]
+          ? x[1] + x[2]
+          : x[1] + "(" + x[2] + ") " + x[3] + (x[4] ? "-" + x[4] : "");
+      }
+    },
   },
   watch: {
     postalCode() {
